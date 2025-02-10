@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { InvestmentsResultsModel } from './investments.results.model';
 
 @Component({
   selector: 'app-investment-results',
@@ -9,12 +10,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './investment-results.component.css'
 })
 export class InvestmentResultsComponent {
-    @Input() results: {  
-
-        valueEndOfYear: number;  
-        yearlyInterest: number;  
-        totalInterest: number;  
-        investedCapital: number;  
-    }[] = [];
+    @Input() results: InvestmentsResultsModel[] = [];
 
 }
