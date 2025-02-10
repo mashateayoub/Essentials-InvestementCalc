@@ -13,8 +13,8 @@ export class UserInputComponent {
   userData: UserInputModel = {
     initialInvestment: 0,
     annualInvestment: 0,
-    expectedReturn: 0,
-    duration: 0,
+    expectedReturn: 5,
+    duration: 10,
   };
 
   @Output() calculate = new EventEmitter<UserInputModel>();
@@ -22,5 +22,16 @@ export class UserInputComponent {
   onSubmit() {
     console.log(this.userData);
     this.calculate.emit(this.userData);
+    
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.userData = {
+      initialInvestment: 0,
+      annualInvestment: 0,
+      expectedReturn: 5,
+      duration: 10,
+    };
   }
 }

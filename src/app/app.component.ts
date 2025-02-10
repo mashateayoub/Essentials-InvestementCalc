@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { InvestmentResultsComponent } from './investment-results/investment-results.component';
 import { InvestmentsResultsModel } from './investment-results/investments.results.model';
@@ -12,7 +12,11 @@ import { UserInputModel } from './user-input/user-input.model';
   imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent],
 })
 export class AppComponent {
-  results: InvestmentsResultsModel[] = [];
+  results = signal<InvestmentsResultsModel[] | undefined>(undefined);
+  
+  
+  
+  // : InvestmentsResultsModel[] = [];
 
   userData: UserInputModel = {
     initialInvestment: 0,
@@ -21,25 +25,27 @@ export class AppComponent {
     duration: 0,
   };
 
-  calculateResults(userData: UserInputModel ) {
+  calculateResults(userData: UserInputModel) {
     this.userData = userData;
-    this.results = [];
+    const newResults: InvestmentsResultsModel[] = [];
     let valueEndOfYear = this.userData.initialInvestment;
     let yearlyInterest = 0;
     let totalInterest = 0;
     let investedCapital = this.userData.initialInvestment;
+
     for (let i = 0; i < this.userData.duration; i++) {
       yearlyInterest = (valueEndOfYear * this.userData.expectedReturn) / 100;
       totalInterest += yearlyInterest;
       investedCapital += this.userData.annualInvestment;
       valueEndOfYear =
         valueEndOfYear + yearlyInterest + this.userData.annualInvestment;
-      this.results.push({
+      newResults.push({
         valueEndOfYear,
         yearlyInterest,
         totalInterest,
         investedCapital,
       });
     }
+    this.results.set(newResults);
   }
 }

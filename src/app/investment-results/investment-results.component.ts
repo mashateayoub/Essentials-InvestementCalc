@@ -10,6 +10,6 @@ import { InvestmentsResultsModel } from './investments.results.model';
   styleUrl: './investment-results.component.css'
 })
 export class InvestmentResultsComponent {
-    @Input() results: InvestmentsResultsModel[] = [];
+    @Input() results: InvestmentsResultsModel[] | undefined = [];
 
 }
