@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Investment Value</th>
+      <th>Interest (Year)</th>
+      <th>Total Interest</th>
+      <th>Invested Capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let result of results; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        {{ result.valueEndOfYear | currency : "USD" : "symbol" : "1.0-0" }}
+      </td>
+      <td>
+        {{ result.yearlyInterest | currency : "USD" : "symbol" : "1.0-0" }}
+      </td>
+      <td>
+        {{ result.totalInterest | currency : "USD" : "symbol" : "1.0-0" }}
+      </td>
+      <td>
+        {{ result.investedCapital | currency : "USD" : "symbol" : "1.0-0" }}
+      </td>
+    </tr>
+  </tbody>
+</table>
